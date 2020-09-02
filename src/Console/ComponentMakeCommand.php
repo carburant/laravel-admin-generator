@@ -28,7 +28,7 @@ class ComponentMakeCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Create admin views (index, form, partial action & partial name)';
+    protected $description = 'Create admin js component index';
 
     /**
      * Create a new command instance.
