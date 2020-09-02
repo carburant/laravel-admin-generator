@@ -1,0 +1,61 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+class DummyClass
+{
+    use HandlesAuthorization;
+
+    /**
+     * Create a new policy instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    public function adminIndex(User $user)
+    {
+        return $user->hasPermissionTo('admin.DummyPermissionNamespace.index');
+    }
+
+    public function adminCreate(User $user)
+    {
+        return $user->hasPermissionTo('admin.DummyPermissionNamespace.create');
+    }
+
+    public function adminStore(User $user)
+    {
+        return $user->hasPermissionTo('admin.DummyPermissionNamespace.store');
+    }
+
+    public function adminShow(User $user)
+    {
+        return $user->hasPermissionTo('admin.DummyPermissionNamespace.show');
+    }
+
+    public function adminEdit(User $user)
+    {
+        return $user->hasPermissionTo('admin.DummyPermissionNamespace.edit');
+    }
+
+    public function adminUpdate(User $user)
+    {
+        return $user->hasPermissionTo('admin.DummyPermissionNamespace.update');
+    }
+
+    public function adminDestroy(User $user)
+    {
+        return $user->hasPermissionTo('admin.DummyPermissionNamespace.destroy');
+    }
+
+    public function adminDuplicate(User $user)
+    {
+        return $user->hasPermissionTo('admin.DummyPermissionNamespace.duplicate');
+    }
+}

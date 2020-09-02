@@ -1,0 +1,29 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\Http\Controllers\Controller;
+use App\DummyModelName;
+use Yajra\DataTables\Facades\DataTables;
+
+class DummyClass extends Controller
+{
+    public function datatable()
+    {
+        $this->authorize('adminIndex', DummyModelName::class);
+
+        $query = DummyModelName::query()
+            ->select(['DummyTableName.*']);
+
+        $datatables = DataTables::of($query);
+
+        $datatables->editColumn('is_active', function(DummyModelName $DummyModelVarName) {
+            return $DummyModelVarName->is_active ? trans('admin.yes') : trans('admin.no');
+        });
+
+        $datatables->addColumn('action', 'admin.DummyViewName.partials.action')
+            ->rawColumns(['action']);
+
+        return $datatables->toJson();
+    }
+}

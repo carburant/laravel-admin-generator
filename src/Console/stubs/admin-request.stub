@@ -1,0 +1,62 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\DummyModelName as DummyModelNameModel;
+use App\Traits\Http\Request\LocalisationFilter;
+use Illuminate\Foundation\Http\FormRequest;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
+class DummyClass extends FormRequest
+{
+    use LocalisationFilter;
+
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        $validators = [
+            'name' => ['required', 'max:128'],
+            'is_active'=> ['required']
+        ];
+
+        $defaultLocale = config('app.fallback_locale');
+        foreach(LaravelLocalization::getLocalesOrder() as $locale => $value) {
+            // $validators[sprintf('%s.name', $locale)] = ['required'];
+        }
+
+        switch($this->getMethod()) {
+            case 'POST':
+                //
+                break;
+            case 'PUT':
+                //
+                break;
+        }
+
+        return $validators;
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->requestLocalesFilter('DummyModelVarName');
+    }
+
+    public function hasFileIsValid($name)
+    {
+        return $this->hasFile($name) && $this->file($name)->isValid();
+    }
+}

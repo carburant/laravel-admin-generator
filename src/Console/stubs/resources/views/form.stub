@@ -1,0 +1,54 @@
+@extends('layouts.admin')
+
+@section('content')
+
+    @php($isEdit = $DummyModelVarName->id ?? false)
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8 pb-5">
+
+                <div class="header mt-md-5 mb-3">
+                    <div class="header-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="header-pretitle">
+                                    DummyTitle management
+                                </h6>
+                                <h1 class="header-title">
+                                    @if($isEdit)
+                                        @can('admin.DummyRouteName.edit')
+                                            Edit <small class="text-muted">{{ $DummyModelVarName->name }}</small>
+                                        @else
+                                            @can('admin.DummyRouteName.show')
+                                                {{ $DummyModelVarName->name }}
+                                            @endcan
+                                        @endcan
+                                    @else
+                                        Create
+                                    @endif
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form method="post" action="{{ $isEdit ? route('admin.DummyRouteName.update', [$DummyModelVarName->id]) : route('admin.DummyRouteName.store') }}" enctype="multipart/form-data">
+
+                    @include('admin.partials.form')
+
+                    @can('admin.DummyRouteName.edit')
+                        <button type="submit" class="btn btn-primary btn-block">
+                            @if($isEdit)
+                                Submit
+                            @else
+                                Create
+                            @endif
+                        </button>
+                    @endcan
+                </form>
+            </div>
+        </div>
+    </div>
+
+@endsection

@@ -1,0 +1,1 @@
+<a href="@can('admin.DummyRouteName.edit'){{ route('admin.DummyRouteName.edit', [$id]) }}@else @can('admin.DummyRouteName.show'){{ route('admin.DummyRouteName.show', [$id]) }}@endcan @endcan">{{ $name }}</a>

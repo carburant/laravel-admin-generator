@@ -1,0 +1,105 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\DummyModelName;
+use DummyRootNamespaceHttp\Controllers\Controller;
+use DummyRootNamespaceHttp\Requests\Admin\DummyRequestName as DummyRequestNameRequest;
+
+class DummyClass extends Controller
+{
+    public function index()
+    {
+        $this->authorize('adminIndex', DummyModelName::class);
+
+        return view('admin.DummyViewName.index');
+    }
+
+    public function create()
+    {
+        $this->authorize('adminCreate', DummyModelName::class);
+
+        return view('admin.DummyViewName.form', [
+            'form' => $this->form()
+        ]);
+    }
+
+    public function store(DummyRequestNameRequest $request)
+    {
+        $this->authorize('adminStore', DummyModelName::class);
+
+        $DummyModelVarName = new DummyModelName();
+        $DummyModelVarName->fill($request->all());
+        $DummyModelVarName->save();
+
+        return redirect()
+            ->route('admin.DummyRouteName.edit', [$DummyModelVarName])
+            ->with('status.success', 'DummyModelName created.');
+    }
+
+    public function show(DummyModelName $DummyModelVarName)
+    {
+        $this->authorize('adminShow', $DummyModelVarName);
+
+        return view('admin.DummyViewName.form', [
+            'form' => $this->form($DummyModelVarName),
+            'DummyModelVarName' => $DummyModelVarName,
+            'readonly' => true,
+            'disabled' => true
+        ]);
+    }
+
+    public function edit(DummyModelName $DummyModelVarName)
+    {
+        $this->authorize('adminEdit', $DummyModelVarName);
+
+        return view('admin.DummyViewName.form', [
+            'form' => $this->form($DummyModelVarName),
+            'DummyModelVarName' => $DummyModelVarName
+        ]);
+    }
+
+    public function update(DummyModelName $DummyModelVarName, DummyRequestNameRequest $request)
+    {
+        $this->authorize('adminUpdate', $DummyModelVarName);
+
+        $DummyModelVarName->update($request->all());
+
+        return redirect()
+            ->route('admin.DummyRouteName.edit', [$DummyModelVarName])
+            ->with('status.success', 'DummyModelName updated.');
+    }
+
+    public function destroy(DummyModelName $DummyModelVarName)
+    {
+        $this->authorize('adminDestroy', $DummyModelVarName);
+
+        $DummyModelVarName->delete();
+
+        return redirect()
+            ->route('admin.DummyRouteName.index')
+            ->with('status.success', 'DummyModelName deleted.');
+    }
+
+    protected function form($DummyModelVarName = null)
+    {
+        $form = [];
+
+        $form[] = [
+            'label' => 'Name',
+            'type' => 'text',
+            'name' => 'name',
+            'required' => true,
+            'value' => old('name', $DummyModelVarName->name ?? null),
+        ];
+
+        $form[] = [
+            'label' => 'Activated ?',
+            'type' => 'checkbox',
+            'name' => 'is_active',
+            'checked' => old('is_active', $DummyModelVarName->is_active ?? null)
+        ];
+
+        return $form;
+    }
+}

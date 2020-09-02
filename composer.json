@@ -1,0 +1,27 @@
+{
+    "name": "carburant/laravel-admin-generator",
+    "description": "Generate admin file for starter pack v2.",
+    "homepage": "https://github.com/carburant/laravel-admin-generator",
+    "authors": [
+        {
+            "name": "Guillaume Leblanc",
+            "email": "guillaume@carburant.fr"
+        }
+    ],
+    "require": {
+        "php": "^7.2.5",
+        "laravel/framework": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Carburant\\StarterPack\\AdminContentGenerator\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AdminContentGeneratorServiceProvider"
+            ]
+        }
+    }
+}
