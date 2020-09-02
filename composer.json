@@ -20,7 +20,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "AdminContentGeneratorServiceProvider"
+                "Carburant\\StarterPack\\AdminContentGenerator\\AdminContentGeneratorServiceProvider"
             ]
         }
     }
