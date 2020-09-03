@@ -50,6 +50,23 @@ class ControllerMakeCommand extends GeneratorCommand
     }
 
     /**
+     * Execute the console command.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        if (parent::handle() === false) {
+            return false;
+        }
+
+        $name = class_basename($this->getNameInput());
+        $pluralName = Str::lower(Str::plural($name));
+
+        $this->info("Add in router/admin.php: Route::resource('{$pluralName}', '{$name}Controller');");
+    }
+
+    /**
      * Build the class with the given name.
      *
      * @param string $name
