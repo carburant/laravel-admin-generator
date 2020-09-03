@@ -60,7 +60,7 @@ class PolicyMakeCommand extends GeneratorCommand
             return false;
         }
 
-        $name = Str::lower(Str::plural(class_basename($this->getNameInput())));
+        $name = Str::lower(Str::plural(str_replace($this->type, '', class_basename($this->getNameInput()))));
 
         $this->info('Add in config/acl.php');
         $this->info("

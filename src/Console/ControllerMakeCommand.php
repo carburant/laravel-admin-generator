@@ -60,7 +60,7 @@ class ControllerMakeCommand extends GeneratorCommand
             return false;
         }
 
-        $name = class_basename($this->getNameInput());
+        $name = str_replace($this->type, '', class_basename($this->getNameInput()));
         $pluralName = Str::lower(Str::plural($name));
 
         $this->info("Add in router/admin.php: Route::resource('{$pluralName}', '{$name}Controller');");
