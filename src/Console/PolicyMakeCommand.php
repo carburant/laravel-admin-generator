@@ -50,6 +50,32 @@ class PolicyMakeCommand extends GeneratorCommand
     }
 
     /**
+     * Execute the console command.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        if (parent::handle() === false) {
+            return false;
+        }
+
+        $name = Str::lower(Str::plural(class_basename($this->getNameInput())));
+
+        $this->info('Add in config/acl.php');
+        $this->info("
+            'admin.{$name}.index',
+            'admin.{$name}.create',
+            'admin.{$name}.store',
+            'admin.{$name}.show',
+            'admin.{$name}.edit',
+            'admin.{$name}.update',
+            'admin.{$name}.destroy',
+            'admin.{$name}.duplicate',
+        ");
+    }
+
+    /**
      * Build the class with the given name.
      *
      * @param string $name
