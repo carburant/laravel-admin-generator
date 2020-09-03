@@ -29,6 +29,23 @@ class AjaxControllerMakeCommand extends GeneratorCommand
     protected $type = 'Controller';
 
     /**
+     * Execute the console command.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        if (parent::handle() === false) {
+            return false;
+        }
+
+        $name = class_basename($this->getNameInput());
+        $pluralName = Str::lower(Str::plural($name));
+
+        $this->info("Add in router/admin.php ajax: Route::get('{$pluralName}/datatable', '{$name}Controller@datatable')->name('{$pluralName}.datatable');");
+    }
+
+    /**
      * Get the default namespace for the class.
      *
      * @param  string  $rootNamespace
