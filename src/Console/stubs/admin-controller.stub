@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use App\DummyModelName;
+use App\Models\DummyModelName;
 use DummyRootNamespaceHttp\Controllers\Controller;
 use DummyRootNamespaceHttp\Requests\Admin\DummyRequestName as DummyRequestNameRequest;
 

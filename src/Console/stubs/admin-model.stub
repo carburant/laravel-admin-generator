@@ -30,12 +30,9 @@ class DummyClass extends Model implements TranslatableContract /*, Sortable*/
         'is_active'
     ];
 
-    protected $dates = [
-        'published_at'
-    ];
-
     protected $casts = [
         'is_active' => 'boolean',
+        'published_at', 'datetime',
     ];
 
     public $with = [

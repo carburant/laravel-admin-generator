@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use App\DummyModelName as DummyModelNameModel;
+use App\Models\DummyModelName as DummyModelNameModel;
 use App\Traits\Http\Request\LocalisationFilter;
 use Illuminate\Foundation\Http\FormRequest;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
